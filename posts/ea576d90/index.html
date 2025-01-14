@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.fallower.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="工具下载及配置本文所使用环境为Linux操作系统(Ubuntu Server 24.04 LTS 64bit) Nasm下载安装下载编译源码的依赖 下载build-essential 12sudo apt updatesudo apt install build-essential    下载yasm 1sudo apt install yasm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具下载及配置">
+<meta property="og:url" content="https://blog.fallower.top/posts/ea576d90/index.html">
+<meta property="og:site_name" content="Fallower博客">
+<meta property="og:description" content="工具下载及配置本文所使用环境为Linux操作系统(Ubuntu Server 24.04 LTS 64bit) Nasm下载安装下载编译源码的依赖 下载build-essential 12sudo apt updatesudo apt install build-essential    下载yasm 1sudo apt install yasm">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-13T12:30:12.287Z">
+<meta property="article:modified_time" content="2025-01-14T16:55:51.011Z">
+<meta property="article:author" content="Fallower">
+<meta property="article:tag" content="x86汇编学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.fallower.top/posts/ea576d90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>工具下载及配置 | Fallower博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fallower博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生如逆旅，一苇以航</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.fallower.top/posts/ea576d90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Fallower.png">
+      <meta itemprop="name" content="Fallower">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fallower博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          工具下载及配置
+        </h1>
+
+        <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-01-13 20:30:12" itemprop="dateCreated datePublished" datetime="2025-01-13T20:30:12+08:00">2025-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-15 00:55:51" itemprop="dateModified" datetime="2025-01-15T00:55:51+08:00">2025-01-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="工具下载及配置"><a href="#工具下载及配置" class="headerlink" title="工具下载及配置"></a>工具下载及配置</h1><p>本文所使用环境为Linux操作系统(Ubuntu Server 24.04 LTS 64bit)</p>
+<h2 id="Nasm下载安装"><a href="#Nasm下载安装" class="headerlink" title="Nasm下载安装"></a>Nasm下载安装</h2><h3 id="下载编译源码的依赖"><a href="#下载编译源码的依赖" class="headerlink" title="下载编译源码的依赖"></a>下载编译源码的依赖</h3><ol>
+<li><p>下载build-essential</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install build-essential</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>下载yasm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install yasm</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><p>如果是没有配置网络的虚拟机可以在本地下载源码后上传至要放置的源码文件夹</p>
+<p><a target="_blank" rel="noopener" href="https://www.nasm.us/">nasm源码下载地址</a></p>
+<p>如果是可以科学上网的虚拟机或服务器可以通过命令进行下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> your_directory_of_nasm</span><br><span class="line"><span class="built_in">cd</span> your_directory_of_nasm</span><br><span class="line">wget https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/nasm-2.16.03.tar.gz <span class="comment">#可以选择需要的版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装Nasm"><a href="#编译安装Nasm" class="headerlink" title="编译安装Nasm"></a>编译安装Nasm</h3><p>将下载好的源码压缩包进行解压缩</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> your_directory_of_nasm</span><br><span class="line">tar -xzvf file_name.tar.gz <span class="comment">#file_name为压缩包名</span></span><br></pre></td></tr></table></figure>
+
+<p>进入解压缩后的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_name</span><br><span class="line">./configure <span class="comment">#可以添加需要的配置以及具体的安装路径</span></span><br><span class="line"><span class="built_in">sudo</span> make <span class="comment">#编译源码</span></span><br><span class="line"><span class="built_in">sudo</span> make install <span class="comment">#安装，如果有指定路径则安装至指定路径下，没有则安装至默认路径/usr/local下，指定路径可能需要添加全局变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=your_path/bin:<span class="variable">$PATH</span> <span class="comment">#如果修改安装路径，则需要在全局变量配置文件中添加,将bin添加至全局变量</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc <span class="comment">#使修改生效 对bash用户，其他用户需要替换为具体修改文件</span></span><br><span class="line">nasm -v <span class="comment">#在任一路径下执行可以看到版本号及构建时间则成功</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Bochs安装及配置"><a href="#Bochs安装及配置" class="headerlink" title="Bochs安装及配置"></a>Bochs安装及配置</h2><h3 id="下载Bochs所需要的依赖"><a href="#下载Bochs所需要的依赖" class="headerlink" title="下载Bochs所需要的依赖"></a>下载Bochs所需要的依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install build-essential <span class="comment">#基本开发工具</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libsdl2-dev <span class="comment">#用于图形界面的SDL2库</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libgtk2.0-dev <span class="comment">#用于GTK+图形界面（可选）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libasound2-dev <span class="comment">#用于音频的音频支持库（可选）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libx11-dev <span class="comment">#X11图形支持（推荐）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gdb <span class="comment">#GDB调试工具（可选）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libpng-dev <span class="comment">#图像支持库（可选）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="下载Bochs源码"><a href="#下载Bochs源码" class="headerlink" title="下载Bochs源码"></a>下载Bochs源码</h3><p>如果可以上网则可以通过一下命令下载，如果不可以上网，通过<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/bochs/files/bochs/">Bochs源码下载地址</a>选择需要的版本下载，将源码上传至你需要放置的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> your_directory_of_bochs</span><br><span class="line"><span class="built_in">cd</span> your_directory_of_bochs</span><br><span class="line">wget https://sourceforge.net/projects/bochs/files/bochs/2.8/bochs-2.8.tar.gz <span class="comment">#可以在下载地址中选择你需要的版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装Bochs"><a href="#编译安装Bochs" class="headerlink" title="编译安装Bochs"></a>编译安装Bochs</h3><p>将下载好的源码压缩包解压缩</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> your_directory_of_bochs</span><br><span class="line">tar -xzvf file_name.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>进入解压缩文件夹，编译bochs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_name <span class="comment">#进入文件夹</span></span><br><span class="line"><span class="comment">#以下为配置选泽，可以自行选择安装路径，每次输入\后回车即可输入连续输入，每个\前有空格 选择配置时如果选择--with-x11则需安装X11图形支持</span></span><br><span class="line">./configure \</span><br><span class="line">&gt; --with-x11 \</span><br><span class="line">&gt; --with-wx \</span><br><span class="line">&gt; --enable-debugger \</span><br><span class="line">&gt; --enable-all-optimizations \</span><br><span class="line">&gt; --enable-readline \</span><br><span class="line">&gt; --enable-long-phy-address \</span><br><span class="line">&gt; --enable-ltdl-install \</span><br><span class="line">&gt; --enable-idle-hack \</span><br><span class="line">&gt; --enable-plugins \</span><br><span class="line">&gt; --enable-a20-pin \</span><br><span class="line">&gt; --enable-x86-64 \</span><br><span class="line">&gt; --enable-smp \</span><br><span class="line">&gt; --enable-cpu-level=6 \</span><br><span class="line">&gt; --enable-large-ramfile \</span><br><span class="line">&gt; --enable-repeat-speedups \</span><br><span class="line">&gt; --enable-fast-function-calls \</span><br><span class="line">&gt; --enable-handlers-chaining \</span><br><span class="line">&gt; --enable-trace-linking \</span><br><span class="line">&gt; --enable-configurable-msrs \</span><br><span class="line">&gt; --enable-show-ips \</span><br><span class="line">&gt; --enable-cpp \</span><br><span class="line">&gt; --enable-debugger-gui \</span><br><span class="line">&gt; --enable-iodebug \</span><br><span class="line">&gt; --enable-logging \</span><br><span class="line">&gt; --enable-assert-checks \</span><br><span class="line">&gt; --enable-fpu \</span><br><span class="line">&gt; --enable-vmx=2 \</span><br><span class="line">&gt; --enable-svm \</span><br><span class="line">&gt; --enable-3dnow \</span><br><span class="line">&gt; --enable-alignment-check \</span><br><span class="line">&gt; --enable-monitor-mwait \</span><br><span class="line">&gt; --enable-avx \</span><br><span class="line">&gt; --enable-evex \</span><br><span class="line">&gt; --enable-x86-debugger \</span><br><span class="line">&gt; --enable-pci \</span><br><span class="line">&gt; --enable-usb \</span><br><span class="line">&gt; --enable-voodoo</span><br><span class="line"><span class="comment">#选择完配置即可进行编译</span></span><br><span class="line"><span class="built_in">sudo</span> make</span><br><span class="line"><span class="comment">#编译时可能遇到某些文件.cc不存在的情况，需要将其对应的.cpp拷贝一份为.cc，以下为博主个人编译时遇到的文件不存在的解决方案</span></span><br><span class="line"><span class="built_in">cp</span> misc/bximage.cpp misc/bximage.cc</span><br><span class="line"><span class="built_in">cp</span> iodev/hdimage/hdimage.cpp iodev/hdimage/hdimage.cc</span><br><span class="line"><span class="built_in">cp</span> iodev/hdimage/vmware3.cpp iodev/hdimage/vmware3.cc</span><br><span class="line"><span class="built_in">cp</span> iodev/hdimage/vmware4.cpp iodev/hdimage/vmware4.cc</span><br><span class="line"><span class="built_in">cp</span> iodev/hdimage/vpc.cpp iodev/hdimage/vpc.cc</span><br><span class="line"><span class="built_in">cp</span> iodev/hdimage/vbox.cpp iodev/hdimage/vbox.cc</span><br><span class="line"><span class="comment">#拷贝完成后再次执行</span></span><br><span class="line"><span class="built_in">sudo</span> make <span class="comment">#编译</span></span><br><span class="line"><span class="built_in">sudo</span> make install <span class="comment">#安装</span></span><br><span class="line"><span class="comment">#自定义安装路径需要手动配置环境变量</span></span><br><span class="line"><span class="comment">#可以通过一下命令测试是否安装成功</span></span><br><span class="line"><span class="comment">#任一路径下</span></span><br><span class="line">bochs</span><br><span class="line"><span class="comment">#弹出选择选择6</span></span><br><span class="line">6</span><br><span class="line"><span class="comment">#查看是否有弹窗</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Bochs配置"><a href="#Bochs配置" class="headerlink" title="Bochs配置"></a>Bochs配置</h3><p>个人建议不要修改bochs默认配置，可以在个人项目下新建项目对应的bochs配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">your_config_file_name.bochsrc </span><br><span class="line">your_config_file_name.cfg </span><br><span class="line">your_config_file_name.conf</span><br><span class="line">your_config_file_name.txt</span><br></pre></td></tr></table></figure>
+
+<p>对于自定义的配置文件，bochs启动时需要通过-f指定配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bochs -f your_config_file</span><br></pre></td></tr></table></figure>
+
+<p>个人配置文件，仅供参考</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建个人配置文件及编辑</span></span><br><span class="line"><span class="built_in">touch</span> my_bochs.config</span><br><span class="line">vim my_bochs.config</span><br><span class="line"></span><br><span class="line"><span class="comment">#bochs具体配置如下 注意将其中提到的路径换为自己的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># configuration file generated by Bochs</span></span><br><span class="line">plugin_ctrl: unmapped=1, biosdev=1, speaker=1, extfpuirq=1, parallel=1, serial=1, iodebug=1</span><br><span class="line">config_interface: textconfig</span><br><span class="line">display_library: x</span><br><span class="line"><span class="comment">#memory: host=2048, guest=2048</span></span><br><span class="line">romimage: file=<span class="string">&quot;/usr/local/share/bochs/BIOS-bochs-latest&quot;</span>       <span class="comment">#自定义安装路径或无法运行的需要找到你的安装路径下的latest</span></span><br><span class="line">vgaromimage: file=<span class="string">&quot;/usr/local/share/bochs/VGABIOS-lgpl-latest&quot;</span>  <span class="comment">#自定义安装路径或无法运行的需要找到你的安装路径下的VGABIOS-lgpl-latest</span></span><br><span class="line">boot: floppy  <span class="comment">#boot的类型，软盘还是硬盘</span></span><br><span class="line">floppy_bootsig_check: disabled=0</span><br><span class="line">floppya: <span class="built_in">type</span>=1_44, 1_44=<span class="string">&quot;path/boot.img&quot;</span>, status=inserted, write_protected=0  <span class="comment">#软盘的配置，需要修改为自己定义的项目软盘路径及名称</span></span><br><span class="line"><span class="comment"># no floppyb</span></span><br><span class="line">ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14</span><br><span class="line">ata0-master: <span class="built_in">type</span>=none</span><br><span class="line">ata0-slave: <span class="built_in">type</span>=none</span><br><span class="line">ata1: enabled=1, ioaddr1=0x170, ioaddr2=0x370, irq=15</span><br><span class="line">ata1-master: <span class="built_in">type</span>=none</span><br><span class="line">ata1-slave: <span class="built_in">type</span>=none</span><br><span class="line">ata2: enabled=0</span><br><span class="line">ata3: enabled=0</span><br><span class="line">pci: enabled=1, chipset=i440fx</span><br><span class="line">vga: extension=vbe, update_freq=5</span><br><span class="line"> </span><br><span class="line">cpu: count=1:1:1, ips=4000000, quantum=16, model=corei7_haswell_4770, reset_on_triple_fault=1, cpuid_limit_winnt=0, ignore_bad_msrs=1, mwait_is_nop=0, msrs=<span class="string">&quot;msrs.def&quot;</span></span><br><span class="line"> </span><br><span class="line">cpuid: x86_64=1,level=6, mmx=1, sep=1, simd=avx512, aes=1, movbe=1, xsave=1,apic=x2apic,sha=1,movbe=1,adx=1,xsaveopt=1,avx_f16c=1,avx_fma=1,bmi=bmi2,1g_pages=1,pcid=1,fsgsbase=1,smep=1,smap=1,mwait=1,vmx=1</span><br><span class="line">cpuid: family=6, model=0x1a, stepping=5, vendor_string=<span class="string">&quot;GenuineIntel&quot;</span>, brand_string=<span class="string">&quot;Intel(R) Core(TM) i7-4770 CPU (Haswell)&quot;</span></span><br><span class="line"> </span><br><span class="line">print_timestamps: enabled=0</span><br><span class="line">debugger_log: -</span><br><span class="line">magic_break: enabled=0</span><br><span class="line">port_e9_hack: enabled=0</span><br><span class="line">private_colormap: enabled=0</span><br><span class="line">clock: <span class="built_in">sync</span>=none, time0=<span class="built_in">local</span>, rtc_sync=0</span><br><span class="line"><span class="comment"># no cmosimage</span></span><br><span class="line"><span class="comment"># no loader</span></span><br><span class="line"><span class="built_in">log</span>: -</span><br><span class="line">logprefix: %t%e%d</span><br><span class="line">debug: action=ignore</span><br><span class="line">info: action=report</span><br><span class="line">error: action=report</span><br><span class="line">panic: action=ask</span><br><span class="line">keyboard: <span class="built_in">type</span>=mf, serial_delay=250, paste_delay=100000, user_shortcut=none</span><br><span class="line">mouse: <span class="built_in">type</span>=ps2, enabled=0, toggle=ctrl+mbutton</span><br><span class="line">speaker: enabled=1, mode=system</span><br><span class="line">parport1: enabled=1, file=none</span><br><span class="line">parport2: enabled=0</span><br><span class="line">com1: enabled=1, mode=null</span><br><span class="line">com2: enabled=0</span><br><span class="line">com3: enabled=0</span><br><span class="line">com4: enabled=0</span><br><span class="line"> </span><br><span class="line">megs: 2048</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装nasm、bochs结束</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/x86%E6%B1%87%E7%BC%96%E5%AD%A6%E4%B9%A0/" rel="tag"># x86汇编学习</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">工具下载及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nasm%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">Nasm下载安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载编译源码的依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">下载源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85Nasm"><span class="nav-number">1.1.3.</span> <span class="nav-text">编译安装Nasm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bochs%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">Bochs安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDBochs%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载Bochs所需要的依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDBochs%E6%BA%90%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">下载Bochs源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85Bochs"><span class="nav-number">1.2.3.</span> <span class="nav-text">编译安装Bochs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bochs%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.4.</span> <span class="nav-text">Bochs配置</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallower"
+      src="/images/Fallower.png">
+  <p class="site-author-name" itemprop="name">Fallower</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll">
+      <div class="links-of-blogroll-title">
+		<!-- 选择合适的icon --><i class="fas fa-history" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+		<!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+        
+		 <!-- 显示四条近期文章 -->
+        
+          <li>
+            <a href="/posts/ea576d90/" title="工具下载及配置" target="_blank">工具下载及配置</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fallower</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">5k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5 分钟</span>
+</div>
+<div>
+<!--添加网站运行时间-->
+<span>小破站已经在风雨中度过了</span>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    function createtime() {
+        const startTime = '01/13/2025 00:00:00',
+            start = new Date(startTime)
+        let mill = new Date() - start,
+            seconds = Math.floor(mill / 1000),
+            mins = Math.floor(seconds / 60),
+            hours = Math.floor(mins / 60),
+            days = Math.floor(hours / 24)
+        const time = {
+            seconds: seconds - mins * 60,
+            mins: mins - hours * 60,
+            hours: hours - days * 24,
+        }
+        for (const k in time) {
+            time[k] = `${time[k]}`.padStart(2, '0')
+        }
+        document.getElementById("timeDate").innerHTML = ` ${days} 天`
+        document.getElementById("times").innerHTML = ` ${time.hours} 小时 ${time.mins} 分 ${time.seconds} 秒`
+    }
+    setInterval(createtime, 500)
+</script>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
